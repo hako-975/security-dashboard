@@ -1,0 +1,32 @@
+name: Deploy Dashboard to Vercel
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy-to-vercel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel (Production)
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} \
+          --env SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+          --env SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }} \
+          --yes
