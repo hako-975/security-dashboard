@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
 const TARGET_URL = process.env.TEST_URL || 'http://localhost:3000/api/webhook';
-const HMAC_SECRET = process.env.HMAC_SECRET || 'rahasia-hmac-anda';
+const HMAC_SECRET = process.env.HMAC_SECRET || 'suhas-keamanan-super-rahasia-2026!';
 
 async function runSecurityTests() {
   console.log('=== MENJALANKAN PENGUJIAN 3 SKENARIO KEAMANAN WEBHOOK ===\n');
